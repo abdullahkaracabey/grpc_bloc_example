@@ -1,11 +1,12 @@
 import 'dart:io';
 
 import 'package:grpc/grpc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 abstract class BaseApi {
   final channel = ClientChannel(
-    "flutterassessment.togg.cloud",
-    port: 80,
+    dotenv.env['apiUrl']!,
+    port: int.parse(dotenv.env['port']!),
     options: const ChannelOptions(
       credentials: ChannelCredentials.insecure(),
       // connectionTimeout: Duration(seconds: 3)
